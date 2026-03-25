@@ -153,27 +153,28 @@ with v_col2:
 # Only show the input and button if the vault isn't fully unlocked
 if not is_unlocked:
     # st.write("---")
-    c1, c2 = st.columns([2.5, 1], vertical_alignment="bottom") 
+    with st.form("unlock_form", clear_on_submit=True):
+        c1, c2 = st.columns([2.5, 1], vertical_alignment="bottom") 
 
-    with c1:
-        user_input = st.text_input(
-            "Station Code", 
-            max_chars=1, 
-            placeholder="Type here...", 
-            label_visibility="collapsed"
-        ).upper().strip()
+        with c1:
+            user_input = st.text_input(
+                "Station Code", 
+                max_chars=1, 
+                placeholder="Type here...", 
+                label_visibility="collapsed"
+            ).upper().strip()
 
-    with c2:
-        if st.button("Unlock", width='content'):
-            if user_input in SECRET_CODES:
-                if user_input not in st.session_state.found_codes_set:
-                    st.session_state.found_codes_set.add(user_input)
-                    # Check if this was the final character
-                    if len(st.session_state.found_codes_set) == 5:
-                        st.balloons()
-                    st.rerun()
-            elif user_input:
-                st.error("Invalid")
+        with c2:
+            if st.button("Unlock", width='content'):
+                if user_input in SECRET_CODES:
+                    if user_input not in st.session_state.found_codes_set:
+                        st.session_state.found_codes_set.add(user_input)
+                        # Check if this was the final character
+                        if len(st.session_state.found_codes_set) == 5:
+                            st.balloons()
+                        st.rerun()
+                elif user_input:
+                    st.error("Invalid")
 else:
     # st.write("---")
     st.success("🔓 **VAULT ACCESS GRANTED: SYSTEM DECRYPTED** ✨")
@@ -204,11 +205,19 @@ if len(st.session_state.found_codes_set) == MEMENTO_TARGET_COUNT:
         
     # Requirement: Fixed size camera input (Pillow handles standardization logic below)
     photo_file = st.camera_input("Smile for the AI! (Wait 3 seconds for AI check) Position yourself at the centre of the camera.")
-        
+
     if photo_file:
         with st.spinner("AI checking gesture... superimposing certified fixed-size frame..."):
             final_img = apply_fixed_size_frame(photo_file)
             st.session_state.memento_generated = True
+        
+        # Checkbox to switch if the camera is acting up
+        use_upload = st.toggle("Camera not working? Use File Upload instead.")
+
+        if use_upload:
+            photo_file = st.file_uploader("Upload your graduation selfie", type=['jpg', 'png', 'jpeg'])
+        else:
+            photo_file = st.camera_input("Smile! Reef Mission Complete.")
             
         st.subheader("📸 Ocean of Possibilities: AI Learning Journey @ Temasek Polytechnic")
         
