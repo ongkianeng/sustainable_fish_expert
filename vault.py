@@ -298,8 +298,9 @@ with st.expander("📂 Your Missions", expanded=True):
     with tab3:
         st.header("**🎶 Wave or Waste?**")
         with st.expander("📝 Instructions", expanded=True):
-            st.write("1. Use the materials to train the model. \n" \
-                     "2. See if AI can correctly detect the sound.")
+            st.write("1. Access this site https://teachablemachine.withgoogle.com/train/audio \n" \
+                     "2. Use the materials to train the model. \n" \
+                     "3. See if AI can correctly detect the sound.")
         with st.expander("🎥 Watch Video"):
             st.write("https://www.linkedin.com/posts/marknewman4_signalprocessing-fouriertransform-voicerecognition-activity-7264904690893549568-Jg1Z")
         with st.expander("💡 Key Takeaways", expanded=True):
