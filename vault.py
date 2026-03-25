@@ -166,9 +166,9 @@ if not is_unlocked:
 
         with c2:
             # This button now responds to the keyboard 'Enter' key!
-            submit_button = st.form_submit_button("Unlock", use_container_width=True)
+            submit_button = st.form_submit_button("Unlock", width="stretch")
 
-        if st.button("Unlock", width='content'):
+        if st.button:
             if user_input in SECRET_CODES:
                 if user_input not in st.session_state.found_codes_set:
                     st.session_state.found_codes_set.add(user_input)
