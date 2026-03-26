@@ -189,16 +189,16 @@ else:
 
 if len(st.session_state.found_codes_set) == MEMENTO_TARGET_COUNT:
     st.divider()
-    st.header("📸 You are certified to be an Ocean Angel!")
+    st.header("📸 Surprise unlocked!")
 
     # 1. One-time Celebration Logic
     if is_unlocked and not st.session_state.get('celebrated', False):
         st.balloons()
-        time.sleep(0.5) 
+        time.sleep(1) 
         st.session_state.celebrated = True
         st.rerun()
         
-    st.success("🎉 Ocean Saved!")
+    st.success("🎉 Congratulations!")
     with st.expander("💡 How will you use AI to save our oceans?", expanded=True):
         st.write("View: https://www.youtube.com/shorts/ieiEaV-q3Ck")
     
@@ -252,7 +252,7 @@ if len(st.session_state.found_codes_set) == MEMENTO_TARGET_COUNT:
                     st.session_state.photo_taken = False
                     st.rerun()
 
-        st.info("Note: Your photo is processed locally and is not stored on our servers.")
+        st.info("Note: Your photo is not stored on the servers.")
 
 # ---------------------------------------------------------
 # 📂 SECTION A: INTERACTIVE MISSION BRIEFING
