@@ -68,7 +68,8 @@ if "celebrated" not in st.session_state:
 
 # --- Session State Initialization ---
 SECRET_CODE = "OCEAN"
-SECRET_CODES = SECRET_CODE.split()
+SECRET_CODES = set(SECRET_CODE)
+# SECRET_CODES = {"O", "C", "E", "A", "N"}
 MEMENTO_TARGET_COUNT = len(SECRET_CODES)
 
 if "found_codes_set" not in st.session_state:
