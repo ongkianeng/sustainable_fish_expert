@@ -113,8 +113,8 @@ def apply_memento(photo_file):
         
         # Calculate X and Y offsets to center the frame on the canvas
         frame_w, frame_h = frame_resized.size
-        x_offset = (TARGET_PRINT_SIZE - frame_w + 2) // 2
-        y_offset = (TARGET_PRINT_SIZE - frame_h) // 2
+        x_offset = (TARGET_PRINT_SIZE - frame_w + 4) // 2
+        y_offset = (TARGET_PRINT_SIZE - frame_h + 4) // 2
         
         # Paste the frame using the calculated coordinates
         canvas.alpha_composite(frame_resized, (x_offset, y_offset))
